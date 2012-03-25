@@ -1,0 +1,5 @@
+#!/bin/sh
+
+post=`rake new_post["$1"] | sed -e "s/Creating new post: //"`
+exec vim $post
+
