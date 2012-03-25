@@ -17,31 +17,43 @@ gh-pagesの方に生成されたhtmlがコミットされるようになって�
 別のリポジトリを作ったほうが、こんがらがることがなくて良いと思う。
 
 で、当然rubyの設定はしておくとして、その後適当なディレクトリで
-	git clone git@github.com:tnaka/blog.git blog
+``` bash
+git clone git@github.com:tnaka/blog.git blog
+```
 としてソース類を取ってくる。ここで、カレントブランチがgh-pagesを取ってきている場合は、
-	git checkout -b master origin/master
+``` bash
+git checkout -b master origin/master
+```
 して、masterをcheckoutしておく。
 その後、
-	gem install bundler
-	rbenv rehash
-	bundle install
-	rake setup_github_pages
+``` bash
+gem install bundler
+rbenv rehash
+bundle install
+rake setup_github_pages
+```
 として、ここでリポジトリの書き込み可能なurlを指定する。
 ここでpostを作成し、
-	rake gen_deploy
+``` bash
+rake gen_deploy
+```
 すれば問題なくpushされた。
 ただ、gh-pagesブランチを強制的に上書きしているようで、
 git logがcloneしてからのものとなってしまう。
 どうにかならないものか。
 
 その後、
-	git add .
-	git commit
-	git push origin master
+``` bash
+git add .
+git commit
+git push origin master
+```
 すると、sourceがmasterにコミットされる。
 
 別のリポジトリでは、
+``` bash
 	git pull origin master
+```
 すれば他所での編集もマージされるっぽい。
 
 とりあえずはこの方法で様子見することにする。
