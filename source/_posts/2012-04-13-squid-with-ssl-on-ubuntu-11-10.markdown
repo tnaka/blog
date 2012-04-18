@@ -4,6 +4,8 @@ title: "ubuntu 11.10でsslサポート付きのsquidを使う"
 date: 2012-04-13 01:44
 comments: true
 categories:
+- software
+- ubuntu
 ---
 
 ubuntu 11.10でapt-getして入るsquidにはsslサポートが付いていないので、
