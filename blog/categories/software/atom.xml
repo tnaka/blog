@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: software | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/software/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vsftpdのlogに日本語ファイル名を正常に出力する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/"/>
+    <updated>2013-10-29T13:43:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log</id>
+    <content type="html"><![CDATA[<p>Ubuntu 12.04にvsftpdをインストールしてみたが、/var/log/vsftpd.logを覗いてみたところ日本語ファイル名が正しく出力されていないことに気づいた。
+vsftpdではログへのマルチバイト文字の出力ができないらしく、全て?に置換されてしまっている。</p>
+
+<p>少々調べてみたところ、ソースを変更すれば良いということだったので、ソースをダウンロードしてきてmakeし、debを作ってインストールすることにした。</p>
+
+<p><code>bash
+cd src #ソースが展開されるので適当な場所にcd
+sudo apt-get update
+apt-get source vsftpd
+sudo apt-get build-dep vsftpd #make/installに必要なpackageをインストール
+cd vsftpd-*
+</code></p>
+
+<p>ここで、logging.cの中の
+<code>c
+str_replace_unprintable(p_str, '?');
+</code>
+の行をコメントアウトしてから、
+``` bash
+debchange -v 2.3.5-1ubuntu2+mblog #versionを変更</p>
+
+<h1>エディタが起動するので、コメントをかきこんで保存</h1>
+
+<p>debuild -us -uc -b #deb作成
+cd ..
+sudo apt-get remove vsftpd #既存のvsftpdを削除
+sudo dpkg -i vsftpd_2.3.5-1ubuntu2+mblog_amd64.deb
+```
+としてインストールする。
+debchangeがない場合は apt-get install devscripts すると入る。
+fakerootもないとだめかもしれない。</p>
+
+<p>これでutf-8のファイル名ならばログにutf-8のまま出力されるようになったはずなので、確認する。</p>
+
+<p>ついでに、勝手にアップデートされないようにバージョンを固定しておく。
+``` bash
+echo vsftpd hold | sudo dpkg --set-selections
+sudo dpkg --get-selections vsftpd #holdになっているか確認</p>
+
+<h1>echo vsftpd install | sudo dpkg --set-selections で解除できる</h1>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/"/>
+    <updated>2013-07-14T18:42:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows</id>
+    <content type="html"><![CDATA[<p>Windowsホスト上でVirtualBoxを走らせてUbuntuなど使っているわけだが、
+共有フォルダを使ったときに日本語のファイルがうまく共有されなかった。
+正しくエンコーディングの設定をするとうまくいくようだ。</p>
+
+<p><code>
+sudo mount -t vboxsf shared -o iocharset=utf8,convertcp=cp932 /mnt/shared
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows 8 上で samba over ssh]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8/"/>
+    <updated>2012-11-04T04:33:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8</id>
+    <content type="html"><![CDATA[<p>とある事情で外からsshしかできないネットワーク上にあるsambaマシンに外からアクセスする必要があり、
+普段常用しているマシンでは Windows 7 に samba over ssh のための設定をしている。</p>
+
+<p>この設定は<a href="http://www.nikhef.nl/~janjust/CifsOverSSH/VistaLoopback.html">Cifs-over-SSH for Windows Vista/7</a>
+に書かれている。
+やっていることはloopbackデバイスを作り、そのデバイスの445ポートにsshでトンネリングした出口を繋げてやるというものである。
+ただ、Windows 7 では普通にネットワークの設定をするだけではsambaで使う445ポートがunbindされないため、接続できない。
+詳しいことは分からないが、sambaサービスの開始を遅らせることでこれを回避しているようである。</p>
+
+<p>今回Windows 8を入れたマシンでこの設定をしようとしたところ、smbというサービスがなくなっていたためscからはじまるコマンドが失敗してしまった。
+だめもとで次のnetshコマンドを実行し、スケジューラ関係の設定はせずにリブートしてトンネルを開けたところ、
+問題なく接続できるようになった。</p>
+
+<p>というわけで、Windows 8では7よりも楽にsamba over sshの設定ができることがわかった。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu 10.04 on 新さくらVPSでgrub-pcのapt-getに失敗する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps/"/>
+    <updated>2012-04-19T02:32:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps</id>
+    <content type="html"><![CDATA[<p>さくらVPSでUbuntu 10.04のサーバを動かしているのだが、
+プランが新しくなってメモリやHDD容量が増えたので、
+旧プランのVPSからrsyncを使ってまるごと移行した。
+しかし、apt-get upgradeしたところgrub-pcのpost-installation scriptだかでfailしてしまった。</p>
+
+<p>dpkg-reconfigure -aしてもなおらないので調べたところ、どうやら
+https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/604335
+のエラーらしい。
+/dev/vdaの検出に失敗しているようだ。</p>
+
+<p>解決法としては、上のページに添付されているパッチgrub-pc.postinst.udiffを
+/var/lib/dpkg/info/grub-pc.postinstにあててやれば良い。
+その後dpkg-reconfigure -aしたところ、
+インストール先に/dev/vdaを選んでもなぜかパーティションに
+インストールすることになるとの警告が出たものの、正常にインストールされた。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu 11.10でsslサポート付きのsquidを使う]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/04/13/squid-with-ssl-on-ubuntu-11-10/"/>
+    <updated>2012-04-13T01:44:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/04/13/squid-with-ssl-on-ubuntu-11-10</id>
+    <content type="html"><![CDATA[<p>ubuntu 11.10でapt-getして入るsquidにはsslサポートが付いていないので、
+巷の記事を読んでhttps_portなどをsquid.confに書いたところで
+https接続は有効にならない。
+そこでこれまた巷の記事を参考にsquidをソースからコンパイルして入れてみた。</p>
+
+<h1>手順</h1>
+
+<p>まずはソースを取ってくる。</p>
+
+<p><code>bash
+apt-get source squid #エラーが出たらdevscripts等をインストール
+apt-get build-dep squid
+apt-get install libssl-dev
+cd squid-2.7.STABLE9
+</code></p>
+
+<p>ここでビルドの設定を変更。
+debian/rulesのConfigure the package以下のそれっぽい場所に--enable-sslを追加する。</p>
+
+<p>また、このままではSSLv2なんたらが見付からないとのエラーが出る。
+opensslにはSSLv2は実装されていないようなので、パッチを当てる。
+``` diff
+--- src/ssl_support.c.orig      2012-04-13 01:37:21.661625364 +0900
++++ src/ssl_support.c   2012-04-13 01:39:08.857629352 +0900
+@@ -446,10 +446,12 @@</p>
+
+<pre><code> ERR_clear_error();
+ debug(83, 1) ("Initialising SSL.\n");
+ switch (version) {
+</code></pre>
+
+<p>+#ifndef OPENSSL_NO_SSL2</p>
+
+<pre><code> case 2:
+    debug(83, 5) ("Using SSLv2.\n");
+    method = SSLv2_server_method();
+    break;
+</code></pre>
+
+<p>+#endif</p>
+
+<pre><code> case 3:
+    debug(83, 5) ("Using SSLv3.\n");
+    method = SSLv3_server_method();
+</code></pre>
+
+<p>@@ -609,10 +611,12 @@</p>
+
+<pre><code> ERR_clear_error();
+ debug(83, 1) ("Initialising SSL.\n");
+ switch (version) {
+</code></pre>
+
+<p>+#ifndef OPENSSL_NO_SSL2</p>
+
+<pre><code> case 2:
+    debug(83, 5) ("Using SSLv2.\n");
+    method = SSLv2_client_method();
+    break;
+</code></pre>
+
+<p>+#endif</p>
+
+<pre><code> case 3:
+    debug(83, 5) ("Using SSLv3.\n");
+    method = SSLv3_client_method();
+</code></pre>
+
+<p>```</p>
+
+<p>さらに、
+<code>bash
+./configure
+debuild -us -uc -b
+cd ..
+sudo dpkg -i squid_2.7.STABLE9-4ubuntu4_amd64.deb squid-common_2.7.STABLE9-4ubuntu4_all.deb
+</code></p>
+
+<p>これでOK。</p>
+]]></content>
+  </entry>
+  
+</feed>

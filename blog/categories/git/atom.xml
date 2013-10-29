@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[lvインストール後のgit log文字化け]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/26/git-log-with-lv/"/>
+    <updated>2012-03-26T04:34:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/26/git-log-with-lv</id>
+    <content type="html"><![CDATA[<p>ページャにはいろいろなエンコーディングに対応したlvが良いと聞き、
+早速インストールしたが、git logで色を付けるコントロールシーケンスが
+うまく解釈されず、そのままゴミになって表示されてしまうようになった。</p>
+
+<p>対処としては、gitのページャの設定を変える。
+<code>bash
+git config --global core.pager "lv -c"
+</code>
+として、lv側でANSIのエスケープシーケンスを認識するオプションを有効にしてやると、
+きちんと表示されるようになる。</p>
+]]></content>
+  </entry>
+  
+</feed>

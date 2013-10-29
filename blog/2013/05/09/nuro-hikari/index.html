@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>NURO 光を契約してみた - めも。</title>
+  <meta name="author" content="tnaka">
+
+  
+  <meta name="description" content="NURO光という家庭向けの2Gbpsの通信サービスが始まったと聞いて、早速契約してみた。 普通はルータにPPPoEのユーザ名パスワードなど設定しないと繋がらないはずで、
+工事前に設定しておこうと思ったのだが、ルータ兼ONUの設定画面には項目はなく、
+工事が終わると何も設定していないのに繋がっていた &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tnaka.github.com/blog/blog/2013/05/09/nuro-hikari/">
+  <link href="/blog/favicon.png" rel="icon">
+  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/blog/javascripts/modernizr-2.0.js"></script>
+  <script src="/blog/javascripts/ender.js"></script>
+  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/blog/atom.xml" rel="alternate" title="めも。" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30310030-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog/">めも。</a></h1>
+  
+    <h2>tnakaのメモ帳</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tnaka.github.com/blog" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">NURO 光を契約してみた</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-09T22:59:00+09:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>NURO光という家庭向けの2Gbpsの通信サービスが始まったと聞いて、早速契約してみた。</p>
+
+<p>普通はルータにPPPoEのユーザ名パスワードなど設定しないと繋がらないはずで、
+工事前に設定しておこうと思ったのだが、ルータ兼ONUの設定画面には項目はなく、
+工事が終わると何も設定していないのに繋がっていた。
+接続はIPv4のみで、IPv6はまだ使えないようだ。</p>
+
+<p>スピードテストの結果は以下のとおり。
+ルータにはLANポートが3つ付いており、これと無線LANの合計で最大2Gbpsと謳っているが、
+繋ぐPCの関係上1ポートのみを使用して測定したので、理論上1Gbps以上出ることはない。
+時間帯を変えて2回測定したが、下りは750Mbps前後、上りは900Mbps前後出るようだ。
+別のノートPCでも試したが、
+スペックが足りなかったのか200Mbps程度しか出なかった。
+やはり高速通信にはCPUやメモリなどの余裕が必要になるようだ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz Mem 16GB
+</span><span class='line'>Intel Corporation 82579LM Gigabit Network Connection (rev 04)
+</span><span class='line'>
+</span><span class='line'>===== Radish Network Speed Testing Ver.4.0.4β - Test Report =====
+</span><span class='line'>測定条件
+</span><span class='line'>　精度:高 データタイプ:圧縮効率低
+</span><span class='line'>下り回線
+</span><span class='line'>　速度:746.6Mbps (93.32MByte/sec) 測定品質:97.4 接続数:16
+</span><span class='line'>上り回線
+</span><span class='line'>　速度:934.5Mbps (116.8MByte/sec) 測定品質:99.7 接続数:16
+</span><span class='line'>測定者ホスト:**********.***.ap.nuro.jp
+</span><span class='line'>測定時刻:2013/5/9(Thu) 12:21
+</span><span class='line'>==================================================================
+</span><span class='line'>
+</span><span class='line'>===== Radish Network Speed Testing Ver.4.0.4β - Test Report =====
+</span><span class='line'>測定条件
+</span><span class='line'>　精度:低 データタイプ:圧縮効率低
+</span><span class='line'>下り回線
+</span><span class='line'>　速度:782.4Mbps (97.80MByte/sec) 測定品質:96.5 接続数:16
+</span><span class='line'>上り回線
+</span><span class='line'>　速度:881.3Mbps (110.2MByte/sec) 測定品質:97.0 接続数:16
+</span><span class='line'>測定者ホスト:**********.***.ap.nuro.jp
+</span><span class='line'>測定時刻:2013/5/9(Thu) 22:01
+</span><span class='line'>==================================================================</span></code></pre></td></tr></table></div></figure>
+
+
+<p>料金について、二年契約で月4980円ということで、まあ妥当かなという感じはする。
+また、工事費が月々割賦で1050円かかるが、現在キャンペーン中で月々の割賦分を
+免除してくれるらしい。
+ただ、この割賦が30ヶ月なので、2年契約の切れ目で解約しようとすると、
+その時点で払っていない工事費分を請求されることになるので注意が必要だ。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tnaka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-09T22:59:00+09:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tnaka.github.com/blog/blog/2013/05/09/nuro-hikari/" data-via="" data-counturl="http://tnaka.github.com/blog/blog/2013/05/09/nuro-hikari/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/blog/2012/11/04/samba-over-ssh-in-windows8/" title="Previous Post: Windows 8 上で samba over ssh">&laquo; Windows 8 上で samba over ssh</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/" title="Next Post: WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う">WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/">vsftpdのlogに日本語ファイル名を正常に出力する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/">WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blog/2013/05/09/nuro-hikari/">NURO 光を契約してみた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blog/2012/11/04/samba-over-ssh-in-windows8/">Windows 8 上で samba over ssh</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blog/2012/06/17/enable-middle-click-on-thinkpad/">最近のthinkpadでミドルクリックを有効にする</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tnaka">@tnaka</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tnaka',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/blog/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tnaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

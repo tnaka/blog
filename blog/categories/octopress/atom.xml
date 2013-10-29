@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[octopressの編集用リポジトリを別の場所に作る]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/26/make-second-repo/"/>
+    <updated>2012-03-26T03:52:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/26/make-second-repo</id>
+    <content type="html"><![CDATA[<p>せっかくgitを使っているんだから、別のPCでもblogに投稿できるとうれしいと思って試してみた。</p>
+
+<p>このblogは一つのリポジトリにgh-pagesブランチとmasterブランチがあり、
+masterブランチの方にoctopressのルートをコミットし、
+gh-pagesの方に生成されたhtmlがコミットされるようになっている。
+一つにまとめたかったのでこのような構成にしたが、
+これからやる人はbitbucketかなにかにソース用として
+別のリポジトリを作ったほうが、こんがらがることがなくて良いと思う。</p>
+
+<p>で、当然rubyの設定はしておくとして、その後適当なディレクトリで
+<code>bash
+git clone git@github.com:tnaka/blog.git blog
+</code>
+としてソース類を取ってくる。ここで、カレントブランチがgh-pagesを取ってきている場合は、
+<code>bash
+git checkout -b master origin/master
+</code>
+して、masterをcheckoutしておく。
+その後、
+<code>bash
+gem install bundler
+rbenv rehash
+bundle install
+rake setup_github_pages
+</code>
+として、ここでリポジトリの書き込み可能なurlを指定する。
+ここでpostを作成し、
+<code>bash
+rake gen_deploy
+</code>
+すれば問題なくpushされた。
+ただ、gh-pagesブランチを強制的に上書きしているようで、
+git logがcloneしてからのものとなってしまう。
+どうにかならないものか。</p>
+
+<p>その後、
+<code>bash
+git add .
+git commit
+git push origin master
+</code>
+すると、sourceがmasterにコミットされる。</p>
+
+<p>別のリポジトリでは、
+``` bash</p>
+
+<pre><code>git pull origin master
+</code></pre>
+
+<p>```
+すれば他所での編集もマージされるっぽい。</p>
+
+<p>とりあえずはこの方法で様子見することにする。</p>
+]]></content>
+  </entry>
+  
+</feed>

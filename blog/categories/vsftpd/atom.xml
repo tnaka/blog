@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vsftpd | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/vsftpd/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vsftpdのlogに日本語ファイル名を正常に出力する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/"/>
+    <updated>2013-10-29T13:43:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log</id>
+    <content type="html"><![CDATA[<p>Ubuntu 12.04にvsftpdをインストールしてみたが、/var/log/vsftpd.logを覗いてみたところ日本語ファイル名が正しく出力されていないことに気づいた。
+vsftpdではログへのマルチバイト文字の出力ができないらしく、全て?に置換されてしまっている。</p>
+
+<p>少々調べてみたところ、ソースを変更すれば良いということだったので、ソースをダウンロードしてきてmakeし、debを作ってインストールすることにした。</p>
+
+<p><code>bash
+cd src #ソースが展開されるので適当な場所にcd
+sudo apt-get update
+apt-get source vsftpd
+sudo apt-get build-dep vsftpd #make/installに必要なpackageをインストール
+cd vsftpd-*
+</code></p>
+
+<p>ここで、logging.cの中の
+<code>c
+str_replace_unprintable(p_str, '?');
+</code>
+の行をコメントアウトしてから、
+``` bash
+debchange -v 2.3.5-1ubuntu2+mblog #versionを変更</p>
+
+<h1>エディタが起動するので、コメントをかきこんで保存</h1>
+
+<p>debuild -us -uc -b #deb作成
+cd ..
+sudo apt-get remove vsftpd #既存のvsftpdを削除
+sudo dpkg -i vsftpd_2.3.5-1ubuntu2+mblog_amd64.deb
+```
+としてインストールする。
+debchangeがない場合は apt-get install devscripts すると入る。
+fakerootもないとだめかもしれない。</p>
+
+<p>これでutf-8のファイル名ならばログにutf-8のまま出力されるようになったはずなので、確認する。</p>
+
+<p>ついでに、勝手にアップデートされないようにバージョンを固定しておく。
+``` bash
+echo vsftpd hold | sudo dpkg --set-selections
+sudo dpkg --get-selections vsftpd #holdになっているか確認</p>
+
+<h1>echo vsftpd install | sudo dpkg --set-selections で解除できる</h1>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

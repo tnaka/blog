@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: windows | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/"/>
+    <updated>2013-07-14T18:42:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows</id>
+    <content type="html"><![CDATA[<p>Windowsホスト上でVirtualBoxを走らせてUbuntuなど使っているわけだが、
+共有フォルダを使ったときに日本語のファイルがうまく共有されなかった。
+正しくエンコーディングの設定をするとうまくいくようだ。</p>
+
+<p><code>
+sudo mount -t vboxsf shared -o iocharset=utf8,convertcp=cp932 /mnt/shared
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows 8 上で samba over ssh]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8/"/>
+    <updated>2012-11-04T04:33:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8</id>
+    <content type="html"><![CDATA[<p>とある事情で外からsshしかできないネットワーク上にあるsambaマシンに外からアクセスする必要があり、
+普段常用しているマシンでは Windows 7 に samba over ssh のための設定をしている。</p>
+
+<p>この設定は<a href="http://www.nikhef.nl/~janjust/CifsOverSSH/VistaLoopback.html">Cifs-over-SSH for Windows Vista/7</a>
+に書かれている。
+やっていることはloopbackデバイスを作り、そのデバイスの445ポートにsshでトンネリングした出口を繋げてやるというものである。
+ただ、Windows 7 では普通にネットワークの設定をするだけではsambaで使う445ポートがunbindされないため、接続できない。
+詳しいことは分からないが、sambaサービスの開始を遅らせることでこれを回避しているようである。</p>
+
+<p>今回Windows 8を入れたマシンでこの設定をしようとしたところ、smbというサービスがなくなっていたためscからはじまるコマンドが失敗してしまった。
+だめもとで次のnetshコマンドを実行し、スケジューラ関係の設定はせずにリブートしてトンネルを開けたところ、
+問題なく接続できるようになった。</p>
+
+<p>というわけで、Windows 8では7よりも楽にsamba over sshの設定ができることがわかった。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近のthinkpadでミドルクリックを有効にする]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/06/17/enable-middle-click-on-thinkpad/"/>
+    <updated>2012-06-17T22:39:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/06/17/enable-middle-click-on-thinkpad</id>
+    <content type="html"><![CDATA[<p>Thinkpadのトラックポイントは、Linux上ではドライバのできが良いのか
+中クリックと上下左右スクロールを両立できる。
+Windowsの標準ドライバではこの共存はできないが、
+ドライバ側の中クリックスクロールを無効にして
+TrackWheelというソフトを入れることで、
+両立することができる。</p>
+
+<p>しかし、この間買ったThinkpad X220tのWindows環境では、
+ドライバの設定で中ボタンドラッグによるスクロールを解除しても
+中クリックが有効にならなかった。
+T61pでは上記の設定で普通に動いているので、
+トラックポイントのドライバのバージョンが新しいとこの問題が起きるらしい。</p>
+
+<p>SynTPEnh.exeを終了しておくと中ボタンが効くようになったので、
+msconfigで起動時にSynTPEnh.exeを実行しないように設定した。</p>
+]]></content>
+  </entry>
+  
+</feed>

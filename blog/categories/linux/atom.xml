@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | めも。]]></title>
+  <link href="http://tnaka.github.com/blog/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu 10.04 on 新さくらVPSでgrub-pcのapt-getに失敗する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps/"/>
+    <updated>2012-04-19T02:32:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps</id>
+    <content type="html"><![CDATA[<p>さくらVPSでUbuntu 10.04のサーバを動かしているのだが、
+プランが新しくなってメモリやHDD容量が増えたので、
+旧プランのVPSからrsyncを使ってまるごと移行した。
+しかし、apt-get upgradeしたところgrub-pcのpost-installation scriptだかでfailしてしまった。</p>
+
+<p>dpkg-reconfigure -aしてもなおらないので調べたところ、どうやら
+https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/604335
+のエラーらしい。
+/dev/vdaの検出に失敗しているようだ。</p>
+
+<p>解決法としては、上のページに添付されているパッチgrub-pc.postinst.udiffを
+/var/lib/dpkg/info/grub-pc.postinstにあててやれば良い。
+その後dpkg-reconfigure -aしたところ、
+インストール先に/dev/vdaを選んでもなぜかパーティションに
+インストールすることになるとの警告が出たものの、正常にインストールされた。</p>
+]]></content>
+  </entry>
+  
+</feed>

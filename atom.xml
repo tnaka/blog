@@ -1,112 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>めも。</title>
-  <meta name="author" content="tnaka">
-
-  
-  <meta name="description" content="Ubuntu 12.04にvsftpdをインストールしてみたが、/var/log/vsftpd.logを覗いてみたところ日本語ファイル名が正しく出力されていないことに気づいた。
-vsftpdではログへのマルチバイト文字の出力ができないらしく、全て?に置換されてしまっている。 少々調べてみたところ、 &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://tnaka.github.com/blog/">
-  <link href="/blog/favicon.png" rel="icon">
-  <link href="/blog/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/blog/javascripts/modernizr-2.0.js"></script>
-  <script src="/blog/javascripts/ender.js"></script>
-  <script src="/blog/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/blog/atom.xml" rel="alternate" title="めも。" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-30310030-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/blog/">めも。</a></h1>
-  
-    <h2>tnakaのメモ帳</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:tnaka.github.com/blog" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/blog/">Blog</a></li>
-  <li><a href="/blog/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[めも。]]></title>
+  <link href="http://tnaka.github.com/blog/atom.xml" rel="self"/>
+  <link href="http://tnaka.github.com/blog/"/>
+  <updated>2013-10-29T14:07:27+09:00</updated>
+  <id>http://tnaka.github.com/blog/</id>
+  <author>
+    <name><![CDATA[tnaka]]></name>
     
-      <h1 class="entry-title"><a href="/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/">Vsftpdのlogに日本語ファイル名を正常に出力する</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2013-10-29T13:43:00+09:00" pubdate data-updated="true">Oct 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ubuntu 12.04にvsftpdをインストールしてみたが、/var/log/vsftpd.logを覗いてみたところ日本語ファイル名が正しく出力されていないことに気づいた。
+  <entry>
+    <title type="html"><![CDATA[vsftpdのlogに日本語ファイル名を正常に出力する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/"/>
+    <updated>2013-10-29T13:43:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log</id>
+    <content type="html"><![CDATA[<p>Ubuntu 12.04にvsftpdをインストールしてみたが、/var/log/vsftpd.logを覗いてみたところ日本語ファイル名が正しく出力されていないことに気づいた。
 vsftpdではログへのマルチバイト文字の出力ができないらしく、全て?に置換されてしまっている。</p>
 
 <p>少々調べてみたところ、ソースを変更すれば良いということだったので、ソースをダウンロードしてきてmakeし、debを作ってインストールすることにした。</p>
@@ -166,42 +78,15 @@ fakerootもないとだめかもしれない。</p>
 
 
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/">WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-14T18:42:00+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Windowsホスト上でVirtualBoxを走らせてUbuntuなど使っているわけだが、
+  <entry>
+    <title type="html"><![CDATA[WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/"/>
+    <updated>2013-07-14T18:42:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows</id>
+    <content type="html"><![CDATA[<p>Windowsホスト上でVirtualBoxを走らせてUbuntuなど使っているわけだが、
 共有フォルダを使ったときに日本語のファイルがうまく共有されなかった。
 正しくエンコーディングの設定をするとうまくいくようだ。</p>
 
@@ -210,42 +95,15 @@ fakerootもないとだめかもしれない。</p>
 
 
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2013/05/09/nuro-hikari/">NURO 光を契約してみた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-09T22:59:00+09:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>NURO光という家庭向けの2Gbpsの通信サービスが始まったと聞いて、早速契約してみた。</p>
+  <entry>
+    <title type="html"><![CDATA[NURO 光を契約してみた]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2013/05/09/nuro-hikari/"/>
+    <updated>2013-05-09T22:59:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2013/05/09/nuro-hikari</id>
+    <content type="html"><![CDATA[<p>NURO光という家庭向けの2Gbpsの通信サービスが始まったと聞いて、早速契約してみた。</p>
 
 <p>普通はルータにPPPoEのユーザ名パスワードなど設定しないと繋がらないはずで、
 工事前に設定しておこうと思ったのだが、ルータ兼ONUの設定画面には項目はなく、
@@ -315,42 +173,15 @@ fakerootもないとだめかもしれない。</p>
 免除してくれるらしい。
 ただ、この割賦が30ヶ月なので、2年契約の切れ目で解約しようとすると、
 その時点で払っていない工事費分を請求されることになるので注意が必要だ。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/11/04/samba-over-ssh-in-windows8/">Windows 8 上で Samba Over Ssh</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-04T04:33:00+09:00" pubdate data-updated="true">Nov 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>とある事情で外からsshしかできないネットワーク上にあるsambaマシンに外からアクセスする必要があり、
+  <entry>
+    <title type="html"><![CDATA[Windows 8 上で samba over ssh]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8/"/>
+    <updated>2012-11-04T04:33:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/11/04/samba-over-ssh-in-windows8</id>
+    <content type="html"><![CDATA[<p>とある事情で外からsshしかできないネットワーク上にあるsambaマシンに外からアクセスする必要があり、
 普段常用しているマシンでは Windows 7 に samba over ssh のための設定をしている。</p>
 
 <p>この設定は<a href="http://www.nikhef.nl/~janjust/CifsOverSSH/VistaLoopback.html">Cifs-over-SSH for Windows Vista/7</a>
@@ -364,42 +195,15 @@ fakerootもないとだめかもしれない。</p>
 問題なく接続できるようになった。</p>
 
 <p>というわけで、Windows 8では7よりも楽にsamba over sshの設定ができることがわかった。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/06/17/enable-middle-click-on-thinkpad/">最近のthinkpadでミドルクリックを有効にする</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-17T22:39:00+09:00" pubdate data-updated="true">Jun 17<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Thinkpadのトラックポイントは、Linux上ではドライバのできが良いのか
+  <entry>
+    <title type="html"><![CDATA[最近のthinkpadでミドルクリックを有効にする]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/06/17/enable-middle-click-on-thinkpad/"/>
+    <updated>2012-06-17T22:39:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/06/17/enable-middle-click-on-thinkpad</id>
+    <content type="html"><![CDATA[<p>Thinkpadのトラックポイントは、Linux上ではドライバのできが良いのか
 中クリックと上下左右スクロールを両立できる。
 Windowsの標準ドライバではこの共存はできないが、
 ドライバ側の中クリックスクロールを無効にして
@@ -414,42 +218,15 @@ T61pでは上記の設定で普通に動いているので、
 
 <p>SynTPEnh.exeを終了しておくと中ボタンが効くようになったので、
 msconfigで起動時にSynTPEnh.exeを実行しないように設定した。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps/">Ubuntu 10.04 on 新さくらVPSでgrub-pcのapt-getに失敗する</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-19T02:32:00+09:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>さくらVPSでUbuntu 10.04のサーバを動かしているのだが、
+  <entry>
+    <title type="html"><![CDATA[Ubuntu 10.04 on 新さくらVPSでgrub-pcのapt-getに失敗する]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps/"/>
+    <updated>2012-04-19T02:32:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/04/19/apt-get-grub-pc-failed-on-new-sakura-vps</id>
+    <content type="html"><![CDATA[<p>さくらVPSでUbuntu 10.04のサーバを動かしているのだが、
 プランが新しくなってメモリやHDD容量が増えたので、
 旧プランのVPSからrsyncを使ってまるごと移行した。
 しかし、apt-get upgradeしたところgrub-pcのpost-installation scriptだかでfailしてしまった。</p>
@@ -464,42 +241,15 @@ https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/604335
 その後dpkg-reconfigure -aしたところ、
 インストール先に/dev/vdaを選んでもなぜかパーティションに
 インストールすることになるとの警告が出たものの、正常にインストールされた。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/04/13/squid-with-ssl-on-ubuntu-11-10/">Ubuntu 11.10でsslサポート付きのsquidを使う</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-13T01:44:00+09:00" pubdate data-updated="true">Apr 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ubuntu 11.10でapt-getして入るsquidにはsslサポートが付いていないので、
+  <entry>
+    <title type="html"><![CDATA[ubuntu 11.10でsslサポート付きのsquidを使う]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/04/13/squid-with-ssl-on-ubuntu-11-10/"/>
+    <updated>2012-04-13T01:44:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/04/13/squid-with-ssl-on-ubuntu-11-10</id>
+    <content type="html"><![CDATA[<p>ubuntu 11.10でapt-getして入るsquidにはsslサポートが付いていないので、
 巷の記事を読んでhttps_portなどをsquid.confに書いたところで
 https接続は有効にならない。
 そこでこれまた巷の記事を参考にsquidをソースからコンパイルして入れてみた。</p>
@@ -598,42 +348,15 @@ opensslにはSSLv2は実装されていないようなので、パッチを当�
 
 
 <p>これでOK。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/03/26/git-log-with-lv/">Lvインストール後のgit Log文字化け</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-26T04:34:00+09:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ページャにはいろいろなエンコーディングに対応したlvが良いと聞き、
+  <entry>
+    <title type="html"><![CDATA[lvインストール後のgit log文字化け]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/26/git-log-with-lv/"/>
+    <updated>2012-03-26T04:34:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/26/git-log-with-lv</id>
+    <content type="html"><![CDATA[<p>ページャにはいろいろなエンコーディングに対応したlvが良いと聞き、
 早速インストールしたが、git logで色を付けるコントロールシーケンスが
 うまく解釈されず、そのままゴミになって表示されてしまうようになった。</p>
 
@@ -646,42 +369,15 @@ opensslにはSSLv2は実装されていないようなので、パッチを当�
 
 <p>として、lv側でANSIのエスケープシーケンスを認識するオプションを有効にしてやると、
 きちんと表示されるようになる。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/03/26/make-second-repo/">Octopressの編集用リポジトリを別の場所に作る</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-26T03:52:00+09:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>せっかくgitを使っているんだから、別のPCでもblogに投稿できるとうれしいと思って試してみた。</p>
+  <entry>
+    <title type="html"><![CDATA[octopressの編集用リポジトリを別の場所に作る]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/26/make-second-repo/"/>
+    <updated>2012-03-26T03:52:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/26/make-second-repo</id>
+    <content type="html"><![CDATA[<p>せっかくgitを使っているんだから、別のPCでもblogに投稿できるとうれしいと思って試してみた。</p>
 
 <p>このblogは一つのリポジトリにgh-pagesブランチとmasterブランチがあり、
 masterブランチの方にoctopressのルートをコミットし、
@@ -754,152 +450,25 @@ git logがcloneしてからのものとなってしまう。
 <p>すれば他所での編集もマージされるっぽい。</p>
 
 <p>とりあえずはこの方法で様子見することにする。</p>
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[test-2nd-repo]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/26/test-2nd-repo/"/>
+    <updated>2012-03-26T03:44:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/26/test-2nd-repo</id>
+    <content type="html"><![CDATA[<p>2つ以上のリポジトリを作って更新するテスト。</p>
+]]></content>
+  </entry>
   
-
-
-    </article>
+  <entry>
+    <title type="html"><![CDATA[test]]></title>
+    <link href="http://tnaka.github.com/blog/blog/2012/03/25/test/"/>
+    <updated>2012-03-25T04:49:00+09:00</updated>
+    <id>http://tnaka.github.com/blog/blog/2012/03/25/test</id>
+    <content type="html"><![CDATA[<p>皆のすなる技術系ブログといふものをしてみむとてするなり。</p>
+]]></content>
+  </entry>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/blog/2012/03/26/test-2nd-repo/">Test-2nd-repo</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-26T03:44:00+09:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2つ以上のリポジトリを作って更新するテスト。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/blog/2013/10/29/make-multibyte-characters-readable-in-vsftpd-log/">vsftpdのlogに日本語ファイル名を正常に出力する</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/blog/2013/07/14/virtualbox-shared-folder-on-windows/">WindowsホストのVirtualBoxでLinuxのVMから共有フォルダで日本語ファイルを扱う</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/blog/2013/05/09/nuro-hikari/">NURO 光を契約してみた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/blog/2012/11/04/samba-over-ssh-in-windows8/">Windows 8 上で samba over ssh</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/blog/2012/06/17/enable-middle-click-on-thinkpad/">最近のthinkpadでミドルクリックを有効にする</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/tnaka">@tnaka</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'tnaka',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/blog/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - tnaka -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>
